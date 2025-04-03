@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Новости{% endblock %}
+
+
+{% block body %}
+    <div class="features">
+        <h1>Новости на сайте</h1>
+        {% if news %}
+            {% for item in news %}
+                <div class="alert alert-warning">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.anons }}</p>
+                    <a href="{% url 'select_news' item.id %}" class="btn btn-warning">Подробнее</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей</p>
+        {% endif %}
+        {% if form.errors %}
+        <div>
+            <p>Пожалуйста, исправьте ошибки:</p>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

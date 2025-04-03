@@ -1,0 +1,34 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+</head>
+<body>
+    <aside>
+        <div class="logo-container">
+            <img src="{% static 'main/img/orig.jpg' %}" alt="Лого">
+            <span class="logo">Проект</span>
+        </div>
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'main_page' %}"><li><i class="fa-solid fa-house"></i>  Главная</li></a>
+            <a href="{% url 'about_page' %}"><li><i class="fa-solid fa-address-book"></i>  Про нас</li></a>
+            <a href="{% url 'news_page' %}"><li><i class="fa-solid fa-address-book"></i>  Новости</li></a>
+            <a href=""><li><i class="fa-solid fa-address-card"></i>  Контакты</li></a>
+            <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle">Добавить запись</i></button></li></a>
+        </ul>
+    </aside>
+    <main class="features">
+        {% block body %}
+        {% endblock %}
+    </main>
+</body>
+</html>
